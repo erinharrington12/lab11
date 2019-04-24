@@ -125,12 +125,11 @@ public class GraphicalCalculatorFrame extends JFrame
             // There should be 5 regions
 
             textPoints[0] = new Point(REGION_START_X, REGION_START_Y);
-            textPoints[1] = new Point(REGION_START_X + REGION_INC_X , REGION_START_Y);
-            textPoints[2] = new Point(REGION_START_X + (REGION_INC_X * 2) , REGION_START_Y);
-            textPoints[3] = new Point(REGION_START_X + (REGION_INC_X * 3) , REGION_START_Y);
-            textPoints[4] = new Point(REGION_START_X + (REGION_INC_X * 4) , REGION_START_Y);
-            
-            
+            textPoints[1] = new Point(REGION_START_X + REGION_INC_X, REGION_START_Y);
+            textPoints[2] = new Point(REGION_START_X + (REGION_INC_X * 2), REGION_START_Y);
+            textPoints[3] = new Point(REGION_START_X + (REGION_INC_X * 3), REGION_START_Y);
+            textPoints[4] = new Point(REGION_START_X + (REGION_INC_X * 4), REGION_START_Y);
+
             regions[0] = new Rectangle(textPoints[0], new Dimension(REGION_WIDTH, REGION_HEIGHT));
             regions[1] = new Rectangle(textPoints[1], new Dimension(REGION_WIDTH, REGION_HEIGHT));
             regions[2] = new Rectangle(textPoints[2], new Dimension(REGION_WIDTH, REGION_HEIGHT));
@@ -170,6 +169,12 @@ public class GraphicalCalculatorFrame extends JFrame
 
             // TODO: Draw bounding boxes on all regions (regions are stored as rectangles):
 
+            g.drawRect(regions[0].x, regions[0].y, regions[0].width, regions[0].height);
+            g.drawRect(regions[1].x, regions[1].y, regions[1].width, regions[1].height);
+            g.drawRect(regions[2].x, regions[2].y, regions[2].width, regions[2].height);
+            g.drawRect(regions[3].x, regions[3].y, regions[3].width, regions[3].height);
+            g.drawRect(regions[4].x, regions[4].y, regions[4].width, regions[4].height);
+
             // Draw the text at the specified text points:
             // Pattern is: operand operator operand operator operand = result
             for (int pt = 0; pt < textPoints.length; pt++)
@@ -204,6 +209,14 @@ public class GraphicalCalculatorFrame extends JFrame
 
             // TODO: Draw translucent rectangle over selected region (use the highlight
             // color):
+            g.setColor(highlight);
+            g.fillRect(regions[0].x, regions[0].y, regions[0].width, regions[0].height);
+
+            g.fillRect(regions[1].x, regions[1].y, regions[1].width, regions[1].height);
+            g.fillRect(regions[2].x, regions[2].y, regions[2].width, regions[2].height);
+            g.fillRect(regions[3].x, regions[3].y, regions[3].width, regions[3].height);
+            g.fillRect(regions[4].x, regions[4].y, regions[4].width, regions[4].height);
+
         }
 
         /**
@@ -221,6 +234,27 @@ public class GraphicalCalculatorFrame extends JFrame
             // region.
             // TODO: check if a clicked point is within a region. If so, set that region to
             // be selected.
+
+            if (regions[0].contains(e.getPoint()))
+            {
+                selectedRegion = 0;
+            }
+            else if (regions[1].contains(e.getPoint()))
+            {
+                selectedRegion = 1;
+            }
+            else if (regions[2].contains(e.getPoint()))
+            {
+                selectedRegion = 2;
+            }
+            else if (regions[3].contains(e.getPoint()))
+            {
+                selectedRegion = 3;
+            }
+            else if (regions[4].contains(e.getPoint()))
+            {
+                selectedRegion = 4;
+            }
 
             // Repaint the panel (this will implicitly call paintComponent):
             this.repaint();
